@@ -5,63 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Cycler</title>
     <style>
-        /* Centers the image perfectly on a clean background */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #ffffff;
+        html, body {
             margin: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
             overflow: hidden;
         }
 
-        /* Container sizing—adjust width and height to match your desired dimensions */
-        <style>
-    html, body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-        background: #ffffff;
-        overflow: hidden;
-    }
+        .slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
 
-    .slider {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 10px;
-        box-sizing: border-box;
-    }
+        .slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
 
-    .slides {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
+        .slides img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+        }
 
-    .slides img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        display: none;
-    }
-
-    .slides img.active {
-        display: block;
-    }
-</style>
+        .slides img.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <div class="slider">
         <div class="slides">
-            <!-- Swap out these placeholder URLs with your actual image links or filenames -->
             <img src="2D3A0324.jpg" class="active">
             <img src="2025HBT-141.jpg">
             <img src="193_JIAS100YRS.jpg">
@@ -79,8 +64,6 @@
                 index = (index + 1) % totalSlides;
                 slides[index].classList.add('active');
             }, 4000);
-
-            // Rotates every 4 seconds (4000ms)
         }
     </script>
 </body>
