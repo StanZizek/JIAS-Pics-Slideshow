@@ -1,2 +1,2 @@
 # JIAS-Pics-Slideshow
-Uses pics for JIAS website
+Uses pics for JIAS Salesforce login
