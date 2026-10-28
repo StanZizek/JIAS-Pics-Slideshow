@@ -57,15 +57,42 @@
     <script>
         const slides = document.querySelectorAll('.slides img');
         const totalSlides = slides.length;
-        let index = Math.floor(Math.random() * totalSlides);
 
-        slides[index].classList.add('active');
+        // Fisher-Yates shuffle
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Build a new shuffled order, making sure it doesn't start
+        // with the photo that was just shown
+        function newOrder(lastShown) {
+            let order = shuffle([...Array(totalSlides).keys()]);
+            if (totalSlides > 1 && order[0] === lastShown) {
+                [order[0], order[1]] = [order[1], order[0]];
+            }
+            return order;
+        }
+
+        let order = newOrder(-1);
+        let position = 0;
+        let current = order[0];
+
+        slides[current].classList.add('active');
 
         if (totalSlides > 1) {
             setInterval(() => {
-                slides[index].classList.remove('active');
-                index = (index + 1) % totalSlides;
-                slides[index].classList.add('active');
+                slides[current].classList.remove('active');
+                position++;
+                if (position >= order.length) {
+                    order = newOrder(current);
+                    position = 0;
+                }
+                current = order[position];
+                slides[current].classList.add('active');
             }, 6000);
         }
     </script>
